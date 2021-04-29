@@ -1,59 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Header from "./components/header/Header";
+import Form from "./components/form/form";
+import List from "./components/list/List";
+import Todo from "./components/todo/Todo";
 
-class App extends React.Component  {
-
-
-  render(){
-    return(
-
-
-      <div>
-      <Counter />
-    </div>
-
-    )
- 
-  }
- 
-}
-
-
-class Counter extends React.Component {
-
-  constructor(){
-    super()
-    this.state={
-      count:0
-    }
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+    };
   }
 
-  increase=()=>{
-    this.setState({count: this.state.count+1})
-  }
-
-  decrease=()=>{
-    this.setState({count: this.state.count-1})
-  }
-  render(){
+  render() {
     return (
-
-       <div>
-          <div>{this.state.count}</div>
-          <button onClick={this.increase}>Increase</button>
-          <button onClick={this.decrease}>Decrease</button>
-       
-       
-
-
-       </div>
-
-
-    )
+      <Router>
+        <Header />
+        <div className="container">
+          <br />
+          <Switch>
+            <Route path="/form" component={Form} />
+            <Route path="/list" component={List} />
+            <Route path="/" component={Todo} />
+          </Switch>
+        </div>
+      </Router>
+    );
   }
-  
 }
-
 
 export default App;
